@@ -1,9 +1,10 @@
+import { AppRouter } from "./Router/AppRouter"
 
 function JournalApp() {
 
   return (
-    <>
-         </>
+      <AppRouter/>
+    
   )
 }
 
