@@ -1,0 +1,19 @@
+{
+  "name": "journalapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gnz6/journalApp.git"
+  },
+  "author": "gnz6",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gnz6/journalApp/issues"
+  },
+  "homepage": "https://github.com/gnz6/journalApp#readme"
+}
