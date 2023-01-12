@@ -1,10 +1,13 @@
 import { AppRouter } from "./Router/AppRouter"
+import { AppTheme } from "./Theme/AppTheme"
 
 function JournalApp() {
 
   return (
-      <AppRouter/>
-    
+    <AppTheme>
+      <AppRouter />
+    </AppTheme>
+
   )
 }
 
