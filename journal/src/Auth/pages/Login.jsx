@@ -32,7 +32,10 @@ export const Login = () => {
 
     <AuthLayout title={"Login"}>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}
+        className="animate__animated animate__fadeIn animate__faster"
+      
+      >
 
         <Grid
           container

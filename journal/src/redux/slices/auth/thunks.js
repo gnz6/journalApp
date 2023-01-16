@@ -1,5 +1,5 @@
 import { GoogleAuthProvider } from "firebase/auth"
-import { loginUser, registerUser, signInWithGoogle } from "../../../firebase/provider"
+import { loginUser, registerUser, signInWithGoogle, signOutFirebase } from "../../../firebase/provider"
 import { checkingCredentials, login, logout } from "./authSlice"
 import { async } from "@firebase/util"
 
@@ -36,5 +36,12 @@ export const loginUserWithEmail = (email, password) =>{
         const resp = await loginUser(email, password)
         if(!resp.ok) return dispatch(logout( resp.errorMessage))
         dispatch(login(resp))
+    }
+}
+
+export const logoutUser =()=>{
+    return async(dispatch)=>{
+        await signOutFirebase()
+        dispatch(logout())
     }
 }

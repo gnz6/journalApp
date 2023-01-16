@@ -39,7 +39,10 @@ export const Register = () => {
   return (
 
     <AuthLayout title={"Register"}>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}
+        className="animate__animated animate__fadeIn animate__faster"
+      
+      >
 
         <Grid
           container

@@ -1,7 +1,12 @@
 import { TurnedInNot } from "@mui/icons-material"
 import { Box, Divider, Drawer, Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar, Typography } from "@mui/material"
+import { width } from "@mui/system"
+import { useSelector } from "react-redux"
 
 const Sidebar = ({ drawerWidth }) => {
+
+    const {displayName, photoURL} = useSelector(state=>state.auth)
+
     return (
         <Box
             component="nav"
@@ -18,8 +23,13 @@ const Sidebar = ({ drawerWidth }) => {
             >
 
                 <Toolbar>
+                    {photoURL?.length?
+                    <div xs={{borderRadius: "50%" , width:"40px"}}>
+                        <img src={photoURL} alt="userPicture"/>
+                    </div>
+                     : null}
                     <Typography variant="h6" noWrap component="div">
-                        Gonzalo Pirovano
+                    {displayName?.length? displayName : null}
                     </Typography>
                 </Toolbar>
                 <Divider />
