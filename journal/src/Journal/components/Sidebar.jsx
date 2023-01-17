@@ -1,11 +1,11 @@
-import { TurnedInNot } from "@mui/icons-material"
-import { Box, Divider, Drawer, Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar, Typography } from "@mui/material"
-import { width } from "@mui/system"
+import { Box, Divider, Drawer, List , Toolbar, Typography } from "@mui/material"
 import { useSelector } from "react-redux"
+import { SideBarItem } from "./SideBarItem"
 
 const Sidebar = ({ drawerWidth }) => {
 
-    const {displayName, photoURL} = useSelector(state=>state.auth)
+    const { displayName, photoURL } = useSelector(state => state.auth)
+    const { notes } = useSelector(state=> state.journal)
 
     return (
         <Box
@@ -23,33 +23,18 @@ const Sidebar = ({ drawerWidth }) => {
             >
 
                 <Toolbar>
-                    {photoURL?.length?
-                    <div xs={{borderRadius: "50%" , width:"40px"}}>
-                        <img src={photoURL} alt="userPicture"/>
-                    </div>
-                     : null}
                     <Typography variant="h6" noWrap component="div">
-                    {displayName?.length? displayName : null}
+                        {displayName?.length ? displayName : null}
                     </Typography>
                 </Toolbar>
                 <Divider />
                 <List>
-                    {
-                        ["Enero", "Febrero", "Marzo", "Abril"].map(text => (
-                            <ListItem key={text} disableGutters>
-                                <ListItemButton>
-                                    <ListItemIcon>
-                                        <TurnedInNot />
-                                    </ListItemIcon>
-                                    <Grid container>
-                                        <ListItemText primary={text} />
-                                        <ListItemText secondary={"asdasd asdasdgerg s ad s asdasdasdasds"} />
-
-                                    </Grid>
-                                </ListItemButton>
-
-                            </ListItem>
+                    {   notes.length?
+                        notes.map(note => (
+                            <SideBarItem key={note.id} {...note} />
                         ))
+                        :
+                        <h1>No notes Registered</h1>
                     }
                 </List>
             </Drawer>

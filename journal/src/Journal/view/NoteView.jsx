@@ -3,12 +3,16 @@ import { Button, Grid, TextField, Typography } from "@mui/material"
 import { ImageGallery } from "../components/ImageGallery"
 
 export const NoteView = () => {
+
+
+    const date  = new Date()
+
     return (
-        <Grid container direction="row" justifyContent={"space-between"} sx={{ mb: 1 }}
+        <Grid container direction="row" justifyContent={"space-between"} sx={{ mb: 1, mt:5 }}
         className="animate__animated animate__fadeIn animate__faster"
         >
             <Grid item >
-                <Typography fontSize={39} fontWeight="light"> 12 de Enero de 2023</Typography>
+                <Typography fontSize={39} fontWeight="light"> {date.toDateString()}</Typography>
             </Grid>
             <Grid item >
                 <Button color="primary" sx={{ padding: 2 }}>
