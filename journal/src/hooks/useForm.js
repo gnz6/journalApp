@@ -1,48 +1,52 @@
 import { useState, useEffect, useMemo } from "react"
 
-export const useForm =(initialForm = {}, formValidations = {})=>{
+export const useForm = (initialForm = {}, formValidations = {}) => {
 
-    
-    const [input, setInput]= useState(initialForm)
-    const [formValidation, setFormValidation ]= useState({})
 
-    
-    useEffect(()=>{
+    const [input, setInput] = useState(initialForm)
+    const [formValidation, setFormValidation] = useState({})
+
+
+    useEffect(() => {
         createValidators();
-    },[input])
-    
+    }, [input])
 
-    const isFormValid  = useMemo(()=>{
-        for (const formValue of Object.keys( formValidation )) {
-            if( formValidation[formValue] !== null) return false
+    useEffect(() => {
+        setInput(initialForm)
+    }, [initialForm])
+
+
+    const isFormValid = useMemo(() => {
+        for (const formValue of Object.keys(formValidation)) {
+            if (formValidation[formValue] !== null) return false
         }
         return true
-    }, [ formValidation ])
+    }, [formValidation])
 
 
-    const handleInputChange =(e)=>{
+    const handleInputChange = (e) => {
         setInput({
             ...input,
-            [e.target.name]:e.target.value
+            [e.target.name]: e.target.value
         })
     }
 
-    
-    const handleReset = ()=>{
+
+    const handleReset = () => {
         setInput(initialForm)
     }
 
-    const createValidators=()=>{
+    const createValidators = () => {
         const formValues = {}
-        for (const formField of Object.keys( formValidations )) {
+        for (const formField of Object.keys(formValidations)) {
             const [fn, errorMessage] = formValidations[formField]
-            formValues[`${formField}Valid`] = fn( input[formField] ) ? null : errorMessage
+            formValues[`${formField}Valid`] = fn(input[formField]) ? null : errorMessage
         }
-        setFormValidation( formValues )
+        setFormValidation(formValues)
     }
 
 
-    return{
+    return {
         ...input,
         input,
         handleInputChange,

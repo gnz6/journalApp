@@ -1,11 +1,13 @@
-import { Box, Divider, Drawer, List , Toolbar, Typography } from "@mui/material"
-import { useSelector } from "react-redux"
+import { Box, Divider, Drawer, List, Toolbar, Typography } from "@mui/material"
+import { useDispatch, useSelector } from "react-redux"
 import { SideBarItem } from "./SideBarItem"
 
 const Sidebar = ({ drawerWidth }) => {
 
     const { displayName, photoURL } = useSelector(state => state.auth)
-    const { notes } = useSelector(state=> state.journal)
+    const { notes } = useSelector(state => state.journal)
+
+
 
     return (
         <Box
@@ -29,9 +31,9 @@ const Sidebar = ({ drawerWidth }) => {
                 </Toolbar>
                 <Divider />
                 <List>
-                    {   notes.length?
+                    {notes.length ?
                         notes.map(note => (
-                            <SideBarItem key={note.id} {...note} />
+                            <SideBarItem key={note.id} {...note}  />
                         ))
                         :
                         <h1>No notes Registered</h1>
