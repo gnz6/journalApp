@@ -2,6 +2,7 @@ import { GoogleAuthProvider } from "firebase/auth"
 import { loginUser, registerUser, signInWithGoogle, signOutFirebase } from "../../../firebase/provider"
 import { checkingCredentials, login, logout } from "./authSlice"
 import { async } from "@firebase/util"
+import { clearOnLogout } from "../journal/journalSlice"
 
 export const checkingAuth = ({email, password}) =>{
     return async(dispatch) =>{
@@ -42,6 +43,7 @@ export const loginUserWithEmail = (email, password) =>{
 export const logoutUser =()=>{
     return async(dispatch)=>{
         await signOutFirebase()
+        dispatch(clearOnLogout())
         dispatch(logout())
     }
 }

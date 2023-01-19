@@ -5,7 +5,7 @@ import { Link as RouterLink } from "react-router-dom"
 import { AuthLayout } from '../layout/AuthLayout'
 import { useForm } from "../../hooks/useForm"
 import { useDispatch, useSelector } from "react-redux"
-import { checkingAuth, googleSignIn, loginUserWithEmail } from '../../redux/slices/auth/thunks'
+import { googleSignIn, loginUserWithEmail } from '../../redux/slices/auth/thunks'
 
 
 const formData = { email: "", password: "" }
@@ -15,12 +15,10 @@ export const Login = () => {
 
   const { status, errorMessage } = useSelector(state => state.auth)
   const dispatch = useDispatch()
-  
-  const isCheckhingAuth = useMemo(()=> status === "checking", [status])
 
   const { input, handleInputChange } = useForm(formData)
 
-  const isAuthenticating = useMemo(()=> status === "checking", [status])
+  const isAuthenticating = useMemo(() => status === "checking", [status])
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -37,7 +35,7 @@ export const Login = () => {
 
       <form onSubmit={handleSubmit}
         className="animate__animated animate__fadeIn animate__faster"
-      
+
       >
 
         <Grid
@@ -75,11 +73,11 @@ export const Login = () => {
 
         <Grid container spacing={2} sx={{ mb: 2, mt: 1 }} >
 
-        <Grid item xs={12} sm={6} 
-          display={!!errorMessage ? "": "none"}
+          <Grid item xs={12} sm={6}
+            display={!!errorMessage ? "" : "none"}
           >
-            <Alert 
-            severity='error'
+            <Alert
+              severity='error'
             >
               {errorMessage}
             </Alert>
@@ -88,14 +86,14 @@ export const Login = () => {
 
           <Grid item xs={12} sm={6}>
             <Button
-            disabled={isAuthenticating} type="submit" variant='contained' fullWidth >
+              disabled={isAuthenticating} type="submit" variant='contained' fullWidth >
               Login
             </Button>
           </Grid>
 
           <Grid item xs={12} sm={6}>
             <Button
-            disabled={isAuthenticating} variant='contained' fullWidth onClick={handleGoogle} >
+              disabled={isAuthenticating} variant='contained' fullWidth onClick={handleGoogle} >
               <Google />
               <Typography sx={{ ml: 1 }}>Google</Typography>
             </Button>
