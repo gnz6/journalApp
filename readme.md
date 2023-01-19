@@ -1,0 +1,1 @@
+Journal App made with React + Material UI
